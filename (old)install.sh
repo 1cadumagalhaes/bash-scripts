@@ -62,13 +62,8 @@ case $yn in
 		sudo rm -Rf /usr/share/applications/telegram.desktop;
 		sudo add-apt-repository ppa:atareao/telegram;
 		sudo apt-get update && sudo apt-get install telegram;
-		echo "add env QT_IM_MODULE=xim";
-		sudo gedit /usr/share/applications/telegram.desktop;
-		read -e -p "Edited? [Y/n]" sn;
-		case $sn in
-			[Yy]* ) echo "Continuing";;
-			[Nn]* ) echo "Continuing";;		
-		esac
+		echo "Adding utf8 characters to the execution";
+		sed -i 's/Exec=/Exec=env QT_IM_MODULE=xim /g' /usr/share/applications/telegram.desktop;
 		cd ~;;
 	[Nn]* ) echo "skipping telegram";;
 esac
@@ -82,12 +77,7 @@ case $yn in
 		git clone https://github.com/Hikari9/comfortable-swipe.git --depth 1;
 		cd comfortable-swipe;
 		bash install;
-		sudo gedit $(comfortable-swipe config);
-		read -e -p "Edited? [Y/n]" sn
-		case $sn in
-			[Yy]* ) echo "Continuing";;
-			[Nn]* ) echo "Continuing";;		
-		esac
+		echo "to edit type: sudo gedit $(comfortable-swipe config);"
 		sudo gpasswd -a $USER $(ls -l /dev/input/event* | awk '{print $4}' | head --line=1);
 		cd ~;;
 	[Nn]* ) echo "skipping comfortable-swipe";;
@@ -119,13 +109,8 @@ case $yn in
 		cd development/;
 		tar xf ~/Downloads/flutter_linux_v1.9.1+hotfix.6-stable.tar.xz;
 		cd ~;
-		echo "Add export PATH=\"\$PATH:\$HOME/development/flutter/bin\"";
-		sudo gedit .profile;
-		read -e -p "Edited? [Y/n]" sn
-		case $sn in
-			[Yy]* ) echo "Continuing";;
-			[Nn]* ) echo "Continuing";;		
-		esac
+		echo "Editing .profile to export path";
+		echo "export PATH=\"\$PATH:\$HOME/development/flutter/bin\"" >> .profile;
 		source .profile;;
 	[Nn]* ) echo "skipping flutter";;
 esac
