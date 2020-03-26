@@ -167,11 +167,75 @@ case $yn in
 	[Nn]* ) echo "skipping gcloud";;
 esac
 
-read -e -p "Do you wish to instal github desktop? [Y/n]" yn
+read -e -p "Do you wish to instal discord? [Y/n]" yn
 case $yn in
 	[Yy]* ) 
-	echo "Installing github desktop";
-	sudo snap install github-desktop --beta --classic;;
-	[Nn]* ) echo "skipping github desktop";;
+		echo "Installing discord";
+		wget "https://discordapp.com/api/download?platform=linux&format=deb" -O discord.deb;
+		sudo dpkg -i discord.deb;
+		sudo apt-get install -f;
+		cd ~;;
+	[Nn]* ) echo "skipping discord";;
+esac
+
+read -e -p "Do you wish to instal whatsdesk? [Y/n]" yn
+case $yn in
+	[Yy]* ) 
+		echo "Installing whatsdesk";
+		sudo snap install whatsdesk;
+		cd ~;;
+	[Nn]* ) echo "skipping whatsdesk";;
+esac
+
+read -e -p "Do you wish to instal franz? [Y/n]" yn
+case $yn in
+	[Yy]* ) 
+		echo "Installing franz";
+		wget https://github.com/meetfranz/franz/releases/download/v5.4.0/franz_5.4.0_amd64.deb -O franz.deb;
+		sudo dpkg -i franz.deb;
+		sudo apt-get install -f;
+
+		cd ~;;
+	[Nn]* ) echo "skipping franz";;
+esac
+
+read -e -p "Do you wish to instal peek and flameshot? [Y/n]" yn
+case $yn in
+	[Yy]* ) 
+		sudo add-apt-repository ppa:peek-developers/stable;
+		sudo apt update;
+		sudo apt install peek;
+		sudo apt install flameshot;
+		cd ~;;
+	[Nn]* ) echo "skipping peek";;
+esac
+
+read -e -p "Do you wish to instal android studio? [Y/n]" yn
+case $yn in
+	[Yy]* ) 
+		sudo apt-get install android-studio;
+		cd ~;;
+	[Nn]* ) echo "skipping android studio";;
+esac
+
+read -e -p "Do you wish to instal graphic software? [Y/n]" yn
+case $yn in
+	[Yy]* ) 
+		sudo snap install obs-studio;
+		sudo snap install inkscape;
+		sudo apt-get install pinta;
+		sudo apt install mypaint;
+		sudo apt install karbon;
+		sudo apt install gpaint;
+		sudo apt install tuxpaint;
+		sudo snap install blender --classic;
+		sudo apt-get install gimp gimp-gmic gmic;
+		sudo apt-get install gimp-plugin-registry;
+		sudo snap install krita;
+		sudo snap install colorpicker-app;
+		sudo snap install audacity;
+		sudo snap install mjpg-streamer
+		cd ~;;
+	[Nn]* ) echo "skipping graphic software";;
 esac
 
