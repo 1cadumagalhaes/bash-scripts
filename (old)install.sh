@@ -104,10 +104,10 @@ read -e -p "Do you wish to instal flutter? [Y/n]" yn
 case $yn in
 	[Yy]* ) 
 		echo "Installing flutter";
-		wget -nc "https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.9.1+hotfix.6-stable.tar.xz";
+		wget -nc "https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.12.13+hotfix.8-stable.tar.xz";
 		mkdir development;
 		cd development/;
-		tar xf ~/Downloads/flutter_linux_v1.9.1+hotfix.6-stable.tar.xz;
+		tar xf ~/Downloads/flutter_linux_v1.12.13+hotfix.8-stable.tar.xz;
 		cd ~;
 		echo "Editing .profile to export path";
 		echo "export PATH=\"\$PATH:\$HOME/development/flutter/bin\"" >> .profile;
